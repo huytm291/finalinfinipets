@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Header from '@/components/Header';
 import ChatBot from '@/components/ChatBot';
 import LoadingScreen from '@/components/LoadingScreen';
-import SearchInput from '@/components/SearchInput'; 
+import SearchInput from '@/components/sections/SearchInput'
 import HeroSection from '@/components/sections/HeroSection';
 import CategoriesSection from '@/components/sections/CategoriesSection';
 import FeaturedProductsSection from '@/components/sections/FeaturedProductsSection';
