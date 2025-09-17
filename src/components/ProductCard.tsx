@@ -16,14 +16,14 @@ const ProductCard = ({ product, onFavorite, isFavorited }: ProductCardProps) => 
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     onFavorite(product.id);
-    
+
     // Create sparkle effect
     const newSparkles = Array.from({ length: 6 }, (_, i) => ({
       id: Date.now() + i,
       x: Math.random() * 40 - 20,
       y: Math.random() * 40 - 20,
     }));
-    
+
     setSparkles(newSparkles);
     setTimeout(() => setSparkles([]), 600);
   };
@@ -34,8 +34,8 @@ const ProductCard = ({ product, onFavorite, isFavorited }: ProductCardProps) => 
         key={i}
         size={14}
         className={`${
-          i < Math.floor(rating) 
-            ? 'text-yellow-400 fill-current' 
+          i < Math.floor(rating)
+            ? 'text-yellow-400 fill-current'
             : 'text-gray-300'
         }`}
       />
@@ -44,23 +44,25 @@ const ProductCard = ({ product, onFavorite, isFavorited }: ProductCardProps) => 
 
   return (
     <>
-      <div 
-        className="group relative bg-white rounded-xl shadow-sm hover-lift card-hover overflow-hidden"
+      <div
+        className="group relative bg-white rounded-2xl shadow-sm hover-lift card-hover overflow-hidden"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Product Image */}
-        <div className="relative aspect-square overflow-hidden">
-          <img 
-            src={product.images[0]} 
+        <div className="relative aspect-square overflow-hidden rounded-2xl">
+          <img
+            src={product.images[0]}
             alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 rounded-2xl"
           />
-          
+
           {/* Overlay Actions */}
-          <div className={`absolute inset-0 bg-black/20 flex items-center justify-center space-x-3 transition-opacity duration-300 ${
-            isHovered ? 'opacity-100' : 'opacity-0'
-          }`}>
+          <div
+            className={`absolute inset-0 bg-black/20 flex items-center justify-center space-x-3 transition-opacity duration-300 ${
+              isHovered ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
             <button
               onClick={() => setShowQuickView(true)}
               className="bg-white/90 backdrop-blur-sm p-3 rounded-full hover:bg-white transition-colors"
@@ -90,15 +92,12 @@ const ProductCard = ({ product, onFavorite, isFavorited }: ProductCardProps) => 
           <button
             onClick={handleFavoriteClick}
             className={`absolute top-3 right-3 p-2 rounded-full transition-all duration-300 ${
-              isFavorited 
-                ? 'bg-pink-500 text-white' 
+              isFavorited
+                ? 'bg-pink-500 text-white'
                 : 'bg-white/80 backdrop-blur-sm text-gray-600 hover:bg-white'
             }`}
           >
-            <Heart 
-              size={18} 
-              className={isFavorited ? 'fill-current' : ''} 
-            />
+            <Heart size={18} className={isFavorited ? 'fill-current' : ''} />
           </button>
 
           {/* Sparkle Effects */}
@@ -122,46 +121,30 @@ const ProductCard = ({ product, onFavorite, isFavorited }: ProductCardProps) => 
               {product.name}
             </h3>
           </div>
-          
-          <p className="text-gray-600 text-sm mb-3 line-clamp-2">
-            {product.description}
-          </p>
+
+          <p className="text-gray-600 text-sm mb-3 line-clamp-2">{product.description}</p>
 
           {/* Rating */}
           <div className="flex items-center space-x-2 mb-3">
-            <div className="flex items-center space-x-1">
-              {renderStars(product.rating)}
-            </div>
-            <span className="text-sm text-gray-500">
-              ({product.reviews})
-            </span>
+            <div className="flex items-center space-x-1">{renderStars(product.rating)}</div>
+            <span className="text-sm text-gray-500">({product.reviews})</span>
           </div>
 
           {/* Price and Sizes */}
           <div className="flex items-center justify-between">
             <div>
-              <span className="text-2xl font-bold text-gray-900">
-                €{product.price}
-              </span>
-              <span className="text-sm text-gray-500 ml-1">
-                {product.currency}
-              </span>
+              <span className="text-2xl font-bold text-gray-900">€{product.price}</span>
+              <span className="text-sm text-gray-500 ml-1">{product.currency}</span>
             </div>
             <div className="text-xs text-gray-500">
-              {product.sizes.length > 1 
-                ? `${product.sizes.length} sizes` 
-                : product.sizes[0]
-              }
+              {product.sizes.length > 1 ? `${product.sizes.length} sizes` : product.sizes[0]}
             </div>
           </div>
 
           {/* Tags */}
           <div className="flex flex-wrap gap-1 mt-3">
             {product.tags.slice(0, 3).map((tag) => (
-              <span 
-                key={tag}
-                className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full"
-              >
+              <span key={tag} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
                 {tag}
               </span>
             ))}
@@ -176,39 +159,32 @@ const ProductCard = ({ product, onFavorite, isFavorited }: ProductCardProps) => 
             <div className="p-6">
               <div className="flex justify-between items-start mb-4">
                 <h2 className="text-2xl font-bold">{product.name}</h2>
-                <button
-                  onClick={() => setShowQuickView(false)}
-                  className="text-gray-500 hover:text-gray-700"
-                >
+                <button onClick={() => setShowQuickView(false)} className="text-gray-500 hover:text-gray-700">
                   ✕
                 </button>
               </div>
-              
+
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <img 
-                    src={product.images[0]} 
+                  <img
+                    src={product.images[0]}
                     alt={product.name}
-                    className="w-full aspect-square object-cover rounded-lg"
+                    className="w-full aspect-square object-cover rounded-2xl"
                   />
                 </div>
-                
+
                 <div>
                   <p className="text-gray-600 mb-4">{product.description}</p>
-                  
+
                   <div className="flex items-center space-x-2 mb-4">
-                    <div className="flex items-center space-x-1">
-                      {renderStars(product.rating)}
-                    </div>
-                    <span className="text-sm text-gray-500">
-                      ({product.reviews} reviews)
-                    </span>
+                    <div className="flex items-center space-x-1">{renderStars(product.rating)}</div>
+                    <span className="text-sm text-gray-500">({product.reviews} reviews)</span>
                   </div>
-                  
+
                   <div className="mb-4">
                     <span className="text-3xl font-bold">€{product.price}</span>
                   </div>
-                  
+
                   <div className="mb-4">
                     <label className="block text-sm font-medium mb-2">Size:</label>
                     <div className="flex flex-wrap gap-2">
@@ -222,17 +198,13 @@ const ProductCard = ({ product, onFavorite, isFavorited }: ProductCardProps) => 
                       ))}
                     </div>
                   </div>
-                  
+
                   <div className="flex space-x-3">
-                    <button className="flex-1 btn-primary">
-                      Add to Cart
-                    </button>
+                    <button className="flex-1 btn-primary">Add to Cart</button>
                     <button
                       onClick={handleFavoriteClick}
                       className={`p-3 rounded-lg border transition-colors ${
-                        isFavorited 
-                          ? 'bg-pink-500 text-white border-pink-500' 
-                          : 'border-gray-300 hover:border-pink-500'
+                        isFavorited ? 'bg-pink-500 text-white border-pink-500' : 'border-gray-300 hover:border-pink-500'
                       }`}
                     >
                       <Heart size={20} className={isFavorited ? 'fill-current' : ''} />
