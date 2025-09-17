@@ -146,12 +146,13 @@ export default function Header({ favoriteCount, cartCount, isDarkMode, onToggleD
                     ? 'text-gray-400 hover:text-white' 
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
+                aria-label="Toggle search"
               >
                 <Search size={18} />
               </button>
               
               {isSearchOpen && (
-                <div className={`absolute right-0 top-full mt-2 w-80 rounded-xl shadow-2xl border p-4 animate-in slide-in-from-top-2 duration-300 ${
+                <div className={`absolute right-0 top-full mt-2 w-80 rounded-full shadow-2xl border p-4 animate-in slide-in-from-top-2 duration-300 ${
                   isDarkMode 
                     ? 'bg-gray-800/95 border-gray-700 backdrop-blur-xl' 
                     : 'bg-white/95 border-gray-200 backdrop-blur-xl'
@@ -159,7 +160,7 @@ export default function Header({ favoriteCount, cartCount, isDarkMode, onToggleD
                   <input
                     type="text"
                     placeholder="Search for pet fashion..."
-                    className={`w-full p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all ${
+                    className={`w-full p-3 rounded-full border focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all ${
                       isDarkMode 
                         ? 'bg-gray-700/50 border-gray-600 text-white placeholder-gray-400' 
                         : 'bg-gray-50/50 border-gray-300 text-gray-900 placeholder-gray-500'
@@ -175,7 +176,7 @@ export default function Header({ favoriteCount, cartCount, isDarkMode, onToggleD
               isDarkMode 
                 ? 'text-gray-400 hover:text-white' 
                 : 'text-gray-600 hover:text-gray-900'
-            }`}>
+            }`} aria-label="Notifications">
               <Bell size={18} />
               <span className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-red-500 to-pink-500 rounded-full animate-pulse"></span>
             </button>
@@ -185,7 +186,7 @@ export default function Header({ favoriteCount, cartCount, isDarkMode, onToggleD
               isDarkMode 
                 ? 'text-gray-400 hover:text-white' 
                 : 'text-gray-600 hover:text-gray-900'
-            }`}>
+            }`} aria-label="Favorites">
               <Heart size={18} />
               {favoriteCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-gradient-to-r from-pink-500 to-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
@@ -199,7 +200,7 @@ export default function Header({ favoriteCount, cartCount, isDarkMode, onToggleD
               isDarkMode 
                 ? 'text-gray-400 hover:text-white' 
                 : 'text-gray-600 hover:text-gray-900'
-            }`}>
+            }`} aria-label="Cart">
               <ShoppingCart size={18} />
               {cartCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-gradient-to-r from-teal-500 to-green-400 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
@@ -213,7 +214,7 @@ export default function Header({ favoriteCount, cartCount, isDarkMode, onToggleD
               isDarkMode 
                 ? 'text-gray-400 hover:text-white' 
                 : 'text-gray-600 hover:text-gray-900'
-            }`}>
+            }`} aria-label="User  profile">
               <User size={18} />
             </button>
 
@@ -225,6 +226,7 @@ export default function Header({ favoriteCount, cartCount, isDarkMode, onToggleD
                   ? 'hover:bg-yellow-500/20 text-yellow-400 hover:text-yellow-300' 
                   : 'hover:bg-teal-500/10 text-gray-600 hover:text-teal-600'
               }`}
+              aria-label="Toggle dark mode"
             >
               {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
             </button>
