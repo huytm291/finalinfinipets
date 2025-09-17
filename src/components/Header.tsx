@@ -44,23 +44,19 @@ export default function Header({ favoriteCount, cartCount, isDarkMode, onToggleD
         {/* Main Header */}
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
-          <div className="flex items-center space-x-4">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 rounded-lg hover:bg-teal-500/10 transition-colors"
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-            
-            <div className="flex items-center space-x-3 group cursor-pointer">
-              <div className="w-10 h-10 bg-gradient-to-r from-teal-500 to-green-400 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-lg">
-                <span className="text-white font-bold text-lg">∞</span>
-              </div>
-              <h1 className="font-coiny text-2xl md:text-3xl bg-gradient-to-r from-teal-500 to-green-400 bg-clip-text text-transparent group-hover:scale-105 transition-all duration-300 font-black">
-                INFINIPETS
-              </h1>
+          <div className="flex items-center space-x-4 cursor-pointer group">
+            {/* Logo Image */}
+            <div className="relative w-10 h-10 rounded-full overflow-hidden shadow-lg transition-transform duration-300 group-hover:scale-110">
+            <img
+            src="/public/image/logo.png"
+               alt="INFINIPETS Logo"
+               className="w-10 h-10 rounded-full object-cover shadow-lg transition-transform duration-300 group-hover:scale-110"
+                 />
             </div>
+            {/* Text Logo */}
+            <h1 className="font-coiny text-2xl md:text-3xl bg-gradient-to-r from-teal-500 to-green-400 bg-clip-text text-transparent transition-transform duration-300 group-hover:scale-105 font-black select-none">
+              INFINIPETS
+            </h1>
           </div>
 
           {/* Navigation - Desktop */}
@@ -69,33 +65,31 @@ export default function Header({ favoriteCount, cartCount, isDarkMode, onToggleD
               <div key={item.name} className="relative group">
                 <a
                   href={item.href}
-                  className={`relative px-6 py-3 text-sm font-medium transition-all duration-300 flex items-center space-x-2 rounded-lg ${
-                    isDarkMode 
-                      ? 'text-gray-300 hover:text-white' 
-                      : 'text-gray-700 hover:text-gray-900'
-                  }`}
+                  className={`relative px-6 py-3 text-sm font-medium transition-all duration-300 flex items-center space-x-2 rounded-lg
+                    ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}
+                    `}
                   style={{ animationDelay: `${index * 0.05}s` }}
                 >
-                  {/* Background hover */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-teal-500/0 to-green-400/0 group-hover:from-teal-500/10 group-hover:to-green-400/10 rounded-lg transition-all duration-300 transform origin-left scale-x-0 group-hover:scale-x-100"></div>
-                  
-                  {/* Border glow */}
-                  <div className="absolute inset-0 rounded-lg border border-transparent group-hover:border-teal-400/20 transition-all duration-300"></div>
-                  
-                  <span className="relative z-10 transition-all duration-200">{item.name}</span>
-                  
+                  {/* Background hover with rounded corners and smooth scale */}
+                  <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-teal-500/10 to-green-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                  {/* Subtle shadow and scale on hover */}
+                  <div className="absolute inset-0 rounded-lg border border-transparent group-hover:border-teal-400/30 shadow-sm group-hover:shadow-teal-400/30 transition-all duration-300"></div>
+
+                  <span className="relative z-10">{item.name}</span>
+
                   {item.badge && (
-                    <span className="relative z-10 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs px-2 py-0.5 rounded-full animate-pulse">
+                    <span className="relative z-10 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs px-2 py-0.5 rounded-full animate-pulse select-none">
                       {item.badge}
                     </span>
                   )}
-                  
+
                   {item.hasDropdown && (
-                    <span className="relative z-10 transform group-hover:rotate-180 transition-transform duration-300 text-xs">
+                    <span className="relative z-10 transform group-hover:rotate-180 transition-transform duration-300 text-xs select-none">
                       ▼
                     </span>
                   )}
-                  
+
                   {/* Bottom accent line */}
                   <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-teal-500 to-green-400 group-hover:w-full group-hover:left-0 transition-all duration-300 rounded-full"></div>
                 </a>
