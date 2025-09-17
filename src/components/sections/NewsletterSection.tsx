@@ -18,20 +18,6 @@ export default function NewsletterSection({ isDarkMode }: NewsletterSectionProps
     Array<{ id: number; x: number; y: number; delay: number }>
   >([]);
 
-  // Đóng dropdown khi click ngoài (đã xóa dropdown nên không cần nữa)
-  // useEffect(() => {
-  //   const handleClickOutside = (event: MouseEvent) => {
-  //     if (
-  //       containerRef.current &&
-  //       !containerRef.current.contains(event.target as Node)
-  //     ) {
-  //       // setSuggestions([]);
-  //     }
-  //   };
-  //   document.addEventListener('mousedown', handleClickOutside);
-  //   return () => document.removeEventListener('mousedown', handleClickOutside);
-  // }, []);
-
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || isLocked) return;
@@ -107,46 +93,33 @@ export default function NewsletterSection({ isDarkMode }: NewsletterSectionProps
         </div>
       ))}
 
-      <div className="container mx-auto px-4 text-center relative z-10" ref={containerRef}>
+      {/* Container with custom gradient background */}
+      <div
+        className="container mx-auto px-4 text-center relative z-10 rounded-lg p-8"
+        style={{
+          backgroundImage:
+            'linear-gradient(135deg, #00D49C 0%, #00B2E3 50%, #4CAF50 100%)',
+        }}
+        ref={containerRef}
+      >
         <div className="max-w-3xl mx-auto">
           <div className="mb-6">
             <div
-              className={`inline-flex items-center space-x-2 rounded-full px-4 py-2 mb-4 bg-gradient-to-r ${
-                isDarkMode
-                  ? 'from-teal-700 to-green-700'
-                  : 'from-teal-100 to-green-100'
-              }`}
+              className={`inline-flex items-center space-x-2 rounded-full px-4 py-2 mb-4 bg-gradient-to-r from-teal-100 to-green-100`}
             >
-              <Sparkles
-                className={`${isDarkMode ? 'text-teal-400' : 'text-teal-600'}`}
-                size={16}
-              />
-              <span
-                className={`text-sm font-medium ${
-                  isDarkMode ? 'text-teal-200' : 'text-teal-800'
-                }`}
-              >
+              <Sparkles className="text-teal-600" size={16} />
+              <span className="text-sm font-medium text-teal-800">
                 Join 50,000+ Pet Parents
               </span>
             </div>
           </div>
 
-          {/* Thay đổi màu nền phần "Join Our Pack" */}
-          <h2
-            className={`font-coiny text-4xl md:text-5xl mb-4 px-6 py-3 rounded-lg text-white ${
-              isDarkMode
-                ? 'bg-green-700 drop-shadow-lg'
-                : 'bg-green-600'
-            }`}
-          >
+          {/* "Join Our Pack" with original text color and white background */}
+          <h2 className="font-coiny text-4xl md:text-5xl mb-4 text-teal-700 bg-white inline-block rounded-lg px-6 py-3">
             Join Our Pack
           </h2>
 
-          <p
-            className={`text-xl mb-8 max-w-2xl mx-auto leading-relaxed ${
-              isDarkMode ? 'text-gray-300' : 'text-gray-600'
-            }`}
-          >
+          <p className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed text-gray-600">
             Get exclusive access to new collections, styling tips, and special offers for your furry friends. Plus, enjoy 15% off your first order! 🐾
           </p>
 
