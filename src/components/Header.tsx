@@ -48,7 +48,7 @@ export default function Header({ favoriteCount, cartCount, isDarkMode, onToggleD
             {/* Logo Image */}
             <div className="relative w-10 h-10 rounded-full overflow-hidden shadow-lg transition-transform duration-300 group-hover:scale-110">
             <img
-            src="public/image/logo.png"
+            src="/images/logo.png"
                alt="INFINIPETS Logo"
                className="w-10 h-10 rounded-full object-cover shadow-lg transition-transform duration-300 group-hover:scale-110"
                  />
