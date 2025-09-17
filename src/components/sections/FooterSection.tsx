@@ -1,22 +1,88 @@
 import React from 'react';
 
 export default function FooterSection() {
-  // Màu nền vuông cho từng icon social (theo màu chủ đạo web)
+  // Màu nền tròn cho từng icon social (theo màu chủ đạo web)
   const socialColors = {
-    instagram: 'bg-gradient-to-tr from-pink-500 via-red-500 to-yellow-400',
-    tiktok: 'bg-gradient-to-tr from-black to-gray-700',
-    whatsapp: 'bg-gradient-to-tr from-green-600 to-green-400',
-    pinterest: 'bg-gradient-to-tr from-red-600 to-red-400',
-    facebook: 'bg-gradient-to-tr from-blue-700 to-blue-500',
+    instagram: 'from-pink-500 via-red-500 to-yellow-400',
+    tiktok: 'from-black to-gray-700',
+    whatsapp: 'from-green-600 to-green-400',
+    pinterest: 'from-red-600 to-red-400',
+    facebook: 'from-blue-700 to-blue-500',
   };
 
-  // Màu nền vuông cho icon thanh toán
+  // Màu nền tròn cho icon thanh toán
   const paymentColors = {
-    visa: 'bg-gradient-to-tr from-blue-600 to-blue-400',
-    mastercard: 'bg-gradient-to-tr from-red-600 to-yellow-400',
-    paypal: 'bg-gradient-to-tr from-blue-700 to-cyan-400',
-    bitcoin: 'bg-gradient-to-tr from-yellow-500 to-orange-400',
+    visa: 'from-blue-600 to-blue-400',
+    mastercard: 'from-red-600 to-yellow-400',
+    paypal: 'from-blue-700 to-cyan-400',
+    bitcoin: 'from-yellow-500 to-orange-400',
   };
+
+  // Helper component cho icon social/payment
+  const IconCircle = ({
+    href,
+    ariaLabel,
+    iconClass,
+    gradientFromTo,
+    title,
+  }: {
+    href?: string;
+    ariaLabel?: string;
+    iconClass: string;
+    gradientFromTo: string;
+    title?: string;
+  }) => (
+    <a
+      href={href || '#'}
+      aria-label={ariaLabel}
+      title={title || ariaLabel}
+      className={`
+        w-12 h-12 flex items-center justify-center rounded-full
+        bg-gradient-to-tr ${gradientFromTo}
+        text-white text-2xl
+        shadow-lg
+        transition-transform transition-shadow duration-300
+        hover:scale-110 hover:shadow-[0_0_15px_rgba(255,255,255,0.6)]
+        hover:brightness-110
+        relative
+        before:absolute before:inset-0 before:rounded-full before:bg-white before:opacity-0 before:transition-opacity before:duration-300
+        hover:before:opacity-10
+        cursor-pointer
+      `}
+    >
+      <i className={iconClass}></i>
+    </a>
+  );
+
+  // Helper component cho icon payment (div không có href)
+  const IconCircleDiv = ({
+    iconClass,
+    gradientFromTo,
+    title,
+  }: {
+    iconClass: string;
+    gradientFromTo: string;
+    title?: string;
+  }) => (
+    <div
+      title={title}
+      className={`
+        w-12 h-12 flex items-center justify-center rounded-full
+        bg-gradient-to-tr ${gradientFromTo}
+        text-white text-2xl
+        shadow-lg
+        transition-transform transition-shadow duration-300
+        hover:scale-110 hover:shadow-[0_0_15px_rgba(255,255,255,0.6)]
+        hover:brightness-110
+        relative
+        before:absolute before:inset-0 before:rounded-full before:bg-white before:opacity-0 before:transition-opacity before:duration-300
+        hover:before:opacity-10
+        cursor-default
+      `}
+    >
+      <i className={iconClass}></i>
+    </div>
+  );
 
   return (
     <footer className="bg-black text-white py-16">
@@ -59,86 +125,61 @@ export default function FooterSection() {
 
           {/* Social Icons */}
           <div className="flex flex-wrap gap-4 mb-8">
-            {/* Instagram */}
-            <a
+            <IconCircle
               href="#"
-              aria-label="Instagram"
-              className={`${socialColors.instagram} w-12 h-12 flex items-center justify-center rounded-lg shadow-lg hover:scale-110 transition-transform`}
-            >
-              <i className="fa-brands fa-square-instagram text-white text-2xl"></i>
-            </a>
-
-            {/* TikTok */}
-            <a
+              ariaLabel="Instagram"
+              iconClass="fa-brands fa-square-instagram"
+              gradientFromTo={socialColors.instagram}
+            />
+            <IconCircle
               href="#"
-              aria-label="TikTok"
-              className={`${socialColors.tiktok} w-12 h-12 flex items-center justify-center rounded-lg shadow-lg hover:scale-110 transition-transform`}
-            >
-              <i className="fa-brands fa-tiktok text-white text-2xl"></i>
-            </a>
-
-            {/* WhatsApp */}
-            <a
+              ariaLabel="TikTok"
+              iconClass="fa-brands fa-tiktok"
+              gradientFromTo={socialColors.tiktok}
+            />
+            <IconCircle
               href="#"
-              aria-label="WhatsApp"
-              className={`${socialColors.whatsapp} w-12 h-12 flex items-center justify-center rounded-lg shadow-lg hover:scale-110 transition-transform`}
-            >
-              <i className="fa-brands fa-square-whatsapp text-white text-2xl"></i>
-            </a>
-
-            {/* Pinterest */}
-            <a
+              ariaLabel="WhatsApp"
+              iconClass="fa-brands fa-square-whatsapp"
+              gradientFromTo={socialColors.whatsapp}
+            />
+            <IconCircle
               href="#"
-              aria-label="Pinterest"
-              className={`${socialColors.pinterest} w-12 h-12 flex items-center justify-center rounded-lg shadow-lg hover:scale-110 transition-transform`}
-            >
-              <i className="fa-brands fa-square-pinterest text-white text-2xl"></i>
-            </a>
-
-            {/* Facebook */}
-            <a
+              ariaLabel="Pinterest"
+              iconClass="fa-brands fa-square-pinterest"
+              gradientFromTo={socialColors.pinterest}
+            />
+            <IconCircle
               href="#"
-              aria-label="Facebook"
-              className={`${socialColors.facebook} w-12 h-12 flex items-center justify-center rounded-lg shadow-lg hover:scale-110 transition-transform`}
-            >
-              <i className="fa-brands fa-square-facebook text-white text-2xl"></i>
-            </a>
+              ariaLabel="Facebook"
+              iconClass="fa-brands fa-square-facebook"
+              gradientFromTo={socialColors.facebook}
+            />
           </div>
 
           {/* Payment Icons */}
           <h4 className="font-semibold text-xl mb-4">Payment Methods</h4>
           <div className="flex flex-wrap gap-4">
-            {/* Visa */}
-            <div
-              className={`${paymentColors.visa} w-12 h-12 flex items-center justify-center rounded-lg shadow-lg`}
+            <IconCircleDiv
+              iconClass="fa-brands fa-cc-visa"
+              gradientFromTo={paymentColors.visa}
               title="Visa"
-            >
-              <i className="fa-brands fa-cc-visa text-white text-2xl"></i>
-            </div>
-
-            {/* MasterCard */}
-            <div
-              className={`${paymentColors.mastercard} w-12 h-12 flex items-center justify-center rounded-lg shadow-lg`}
+            />
+            <IconCircleDiv
+              iconClass="fa-brands fa-cc-mastercard"
+              gradientFromTo={paymentColors.mastercard}
               title="MasterCard"
-            >
-              <i className="fa-brands fa-cc-mastercard text-white text-2xl"></i>
-            </div>
-
-            {/* PayPal */}
-            <div
-              className={`${paymentColors.paypal} w-12 h-12 flex items-center justify-center rounded-lg shadow-lg`}
+            />
+            <IconCircleDiv
+              iconClass="fa-brands fa-cc-paypal"
+              gradientFromTo={paymentColors.paypal}
               title="PayPal"
-            >
-              <i className="fa-brands fa-cc-paypal text-white text-2xl"></i>
-            </div>
-
-            {/* Bitcoin */}
-            <div
-              className={`${paymentColors.bitcoin} w-12 h-12 flex items-center justify-center rounded-lg shadow-lg`}
+            />
+            <IconCircleDiv
+              iconClass="fa-brands fa-bitcoin"
+              gradientFromTo={paymentColors.bitcoin}
               title="Bitcoin"
-            >
-              <i className="fa-brands fa-bitcoin text-white text-2xl"></i>
-            </div>
+            />
           </div>
         </div>
       </div>
