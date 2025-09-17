@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Header from '@/components/Header';
 import ChatBot from '@/components/ChatBot';
 import LoadingScreen from '@/components/LoadingScreen';
-
+import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/sections/HeroSection';
 import CategoriesSection from '@/components/sections/CategoriesSection';
 import FeaturedProductsSection from '@/components/sections/FeaturedProductsSection';
@@ -34,12 +34,16 @@ export default function Index() {
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
+      
       <Header
         favoriteCount={favorites.length}
         cartCount={cartItems.length}
         isDarkMode={isDarkMode}
         onToggleDarkMode={() => setIsDarkMode(!isDarkMode)}
       />
+
+      
+      <Navbar isDarkMode={isDarkMode} />
 
       <HeroSection isDarkMode={isDarkMode} />
       <CategoriesSection isDarkMode={isDarkMode} />
@@ -49,13 +53,16 @@ export default function Index() {
         onFavorite={handleFavorite}
       />
 
-     
       <DynamicProducts />
 
       <LimitedEditionSection isDarkMode={isDarkMode} />
       <OurCraftSection isDarkMode={isDarkMode} />
       <TestimonialsSection isDarkMode={isDarkMode} />
+
+      
       <NewsletterSection isDarkMode={isDarkMode} />
+
+      
       <FooterSection isDarkMode={isDarkMode} />
 
       <ChatBot />
