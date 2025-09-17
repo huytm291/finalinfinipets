@@ -29,7 +29,15 @@ const LoadingScreen = ({ onLoadComplete }: LoadingScreenProps) => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-r from-teal-700 via-green-600 to-teal-700 animate-gradient-x backdrop-blur-lg relative overflow-hidden">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-lg relative overflow-hidden animate-gradient-x"
+      style={{
+        backgroundImage: 'linear-gradient(270deg, #0d9488, #22c55e, #0d9488)', // tương đương from-teal-700 via-green-600 to-teal-700
+        backgroundSize: '400% 400%',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       {/* Glow overlay */}
       <div className="absolute inset-0 bg-white/10 blur-3xl pointer-events-none animate-glow"></div>
 
@@ -41,12 +49,14 @@ const LoadingScreen = ({ onLoadComplete }: LoadingScreenProps) => {
         </div>
 
         {/* INFINIPETS Logo với shimmer gradient */}
-        <h1 className={`font-coiny text-5xl md:text-7xl font-extrabold mb-8 bg-gradient-to-r from-white via-green-300 to-white bg-clip-text text-transparent relative overflow-hidden
+        <h1
+          className={`font-coiny text-5xl md:text-7xl font-extrabold mb-8 bg-gradient-to-r from-white via-green-300 to-white bg-clip-text text-transparent relative overflow-hidden
           transition-transform duration-700 ease-in-out
           ${progress >= 90 ? 'scale-110 opacity-0' : 'scale-100 opacity-100'}
-        `}>
+        `}
+        >
           INFINIPETS
-          <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-70 animate-shimmer"></span>
+          <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-70 animate-shimmer pointer-events-none"></span>
         </h1>
 
         {/* Tagline */}
@@ -60,7 +70,7 @@ const LoadingScreen = ({ onLoadComplete }: LoadingScreenProps) => {
             className="h-full rounded-full shadow-md transition-all duration-300 ease-out bg-gradient-to-r from-green-400 to-teal-400 relative overflow-hidden"
             style={{ width: `${Math.min(progress, 100)}%` }}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-white/60 to-white/30 opacity-50 animate-shimmer"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-white/60 to-white/30 opacity-50 animate-shimmer pointer-events-none"></div>
           </div>
         </div>
         <p className="text-white/70 text-sm mt-4 font-semibold tracking-wide select-none">
@@ -69,26 +79,47 @@ const LoadingScreen = ({ onLoadComplete }: LoadingScreenProps) => {
       </div>
 
       {/* Floating Elements với chuyển động đa chiều và xoay */}
-      <div className="absolute top-16 left-16 text-3xl opacity-20 animate-float-xy" style={{ animationDelay: '0s' }}>✨</div>
-      <div className="absolute top-36 right-28 text-2xl opacity-20 animate-float-xy" style={{ animationDelay: '1.2s' }}>🎾</div>
-      <div className="absolute bottom-36 left-28 text-3xl opacity-20 animate-float-xy" style={{ animationDelay: '2.4s' }}>🦴</div>
-      <div className="absolute bottom-20 right-20 text-2xl opacity-20 animate-float-xy" style={{ animationDelay: '0.6s' }}>🐕</div>
+      <div
+        className="absolute top-16 left-16 text-3xl opacity-20 animate-float-xy"
+        style={{ animationDelay: '0s' }}
+      >
+        ✨
+      </div>
+      <div
+        className="absolute top-36 right-28 text-2xl opacity-20 animate-float-xy"
+        style={{ animationDelay: '1.2s' }}
+      >
+        🎾
+      </div>
+      <div
+        className="absolute bottom-36 left-28 text-3xl opacity-20 animate-float-xy"
+        style={{ animationDelay: '2.4s' }}
+      >
+        🦴
+      </div>
+      <div
+        className="absolute bottom-20 right-20 text-2xl opacity-20 animate-float-xy"
+        style={{ animationDelay: '0.6s' }}
+      >
+        🐕
+      </div>
 
       <style jsx>{`
         @keyframes gradient-x {
-          0%, 100% {
-            background-position: 0% center;
+          0%,
+          100% {
+            background-position: 0% 50%;
           }
           50% {
-            background-position: 100% center;
+            background-position: 100% 50%;
           }
         }
         .animate-gradient-x {
-          background-size: 200% 200%;
-          animation: gradient-x 10s ease infinite;
+          animation: gradient-x 15s ease infinite;
         }
         @keyframes glow {
-          0%, 100% {
+          0%,
+          100% {
             opacity: 0.15;
           }
           50% {
@@ -110,20 +141,21 @@ const LoadingScreen = ({ onLoadComplete }: LoadingScreenProps) => {
           animation: shimmer 2.5s linear infinite;
         }
         @keyframes paw-step-opacity-scale {
-          0%, 100% {
+          0%,
+          100% {
             opacity: 1;
             transform: translateY(0) scale(1);
-            text-shadow: 0 0 10px rgba(255,255,255,0.7);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
           }
           50% {
             opacity: 0.3;
             transform: translateY(-8px) scale(1.2);
-            text-shadow: 0 0 20px rgba(255,255,255,1);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 1);
           }
         }
         .paw-step {
           transition: opacity 0.3s ease, transform 0.3s ease;
-          filter: drop-shadow(0 0 4px rgba(255,255,255,0.6));
+          filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
         }
         .animate-step-1 {
           animation: paw-step-opacity-scale 1.2s infinite;
@@ -133,7 +165,8 @@ const LoadingScreen = ({ onLoadComplete }: LoadingScreenProps) => {
           animation-delay: 0.6s;
         }
         @keyframes float-xy {
-          0%, 100% {
+          0%,
+          100% {
             transform: translate(0, 0) rotate(0deg);
             opacity: 0.2;
           }
