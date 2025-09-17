@@ -45,13 +45,13 @@ export default function Header({ favoriteCount, cartCount, isDarkMode, onToggleD
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <div className="flex items-center space-x-4 cursor-pointer group">
-            {/* Logo Image */}
-            <div className="relative w-10 h-10 rounded-full overflow-hidden shadow-lg transition-transform duration-300 group-hover:scale-110">
-            <img
-            src="/images/logo.png"
-               alt="INFINIPETS Logo"
-               className="w-10 h-10 rounded-full object-cover shadow-lg transition-transform duration-300 group-hover:scale-110"
-                 />
+            {/* Logo Image toàn phần, không bo tròn */}
+            <div className="relative w-28 h-12 transition-transform duration-300 group-hover:scale-105">
+              <img
+                src="/images/logo.png"
+                alt="INFINIPETS Logo"
+                className="w-full h-full object-contain"
+              />
             </div>
             {/* Text Logo */}
             <h1 className="font-coiny text-2xl md:text-3xl bg-gradient-to-r from-teal-500 to-green-400 bg-clip-text text-transparent transition-transform duration-300 group-hover:scale-105 font-black select-none">
@@ -65,17 +65,15 @@ export default function Header({ favoriteCount, cartCount, isDarkMode, onToggleD
               <div key={item.name} className="relative group">
                 <a
                   href={item.href}
-                  className={`relative px-6 py-3 text-sm font-medium transition-all duration-300 flex items-center space-x-2 rounded-lg
+                  className={`relative px-6 py-3 text-sm font-medium flex items-center space-x-2 rounded-lg
                     ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}
-                    `}
+                    transition-all duration-300 transform
+                    group-hover:bg-gradient-to-r group-hover:from-teal-500/10 group-hover:to-green-400/10
+                    group-hover:shadow-md group-hover:shadow-teal-400/30
+                    group-hover:scale-105
+                  `}
                   style={{ animationDelay: `${index * 0.05}s` }}
                 >
-                  {/* Background hover with rounded corners and smooth scale */}
-                  <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-teal-500/10 to-green-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                  {/* Subtle shadow and scale on hover */}
-                  <div className="absolute inset-0 rounded-lg border border-transparent group-hover:border-teal-400/30 shadow-sm group-hover:shadow-teal-400/30 transition-all duration-300"></div>
-
                   <span className="relative z-10">{item.name}</span>
 
                   {item.badge && (
@@ -206,7 +204,7 @@ export default function Header({ favoriteCount, cartCount, isDarkMode, onToggleD
               isDarkMode 
                 ? 'text-gray-400 hover:text-white' 
                 : 'text-gray-600 hover:text-gray-900'
-            }`} aria-label="User  profile">
+            }`} aria-label="User   profile">
               <User size={18} />
             </button>
 
