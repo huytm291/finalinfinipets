@@ -41,10 +41,7 @@ export default function Index() {
         onToggleDarkMode={() => setIsDarkMode(!isDarkMode)}
       />
 
-      {/* Thanh tìm kiếm đặt ngay dưới Header */}
-      <div className="container mx-auto px-4 py-4">
-        <SearchInput isDarkMode={isDarkMode} />
-      </div>
+      {/* Nếu bạn muốn thêm thanh tìm kiếm, hãy tạo component mới hoặc thêm trực tiếp ở đây */}
 
       <HeroSection isDarkMode={isDarkMode} />
       <CategoriesSection isDarkMode={isDarkMode} />
