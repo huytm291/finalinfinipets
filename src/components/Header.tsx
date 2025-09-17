@@ -48,6 +48,7 @@ export default function Header({ favoriteCount, cartCount, isDarkMode, onToggleD
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="lg:hidden p-2 rounded-lg hover:bg-teal-500/10 transition-colors"
+              aria-label="Toggle menu"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -62,7 +63,7 @@ export default function Header({ favoriteCount, cartCount, isDarkMode, onToggleD
             </div>
           </div>
 
-          {/* Navigation - Desktop with New Elegant Effects */}
+          {/* Navigation - Desktop */}
           <nav className="hidden lg:flex items-center space-x-1">
             {navigationItems.map((item, index) => (
               <div key={item.name} className="relative group">
@@ -75,16 +76,13 @@ export default function Header({ favoriteCount, cartCount, isDarkMode, onToggleD
                   }`}
                   style={{ animationDelay: `${index * 0.05}s` }}
                 >
-                  {/* Smooth slide-in background */}
+                  {/* Background hover */}
                   <div className="absolute inset-0 bg-gradient-to-r from-teal-500/0 to-green-400/0 group-hover:from-teal-500/10 group-hover:to-green-400/10 rounded-lg transition-all duration-300 transform origin-left scale-x-0 group-hover:scale-x-100"></div>
                   
-                  {/* Subtle border glow */}
+                  {/* Border glow */}
                   <div className="absolute inset-0 rounded-lg border border-transparent group-hover:border-teal-400/20 transition-all duration-300"></div>
                   
-                  {/* Content */}
-                  <span className="relative z-10 transition-all duration-200">
-                    {item.name}
-                  </span>
+                  <span className="relative z-10 transition-all duration-200">{item.name}</span>
                   
                   {item.badge && (
                     <span className="relative z-10 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs px-2 py-0.5 rounded-full animate-pulse">
@@ -102,7 +100,7 @@ export default function Header({ favoriteCount, cartCount, isDarkMode, onToggleD
                   <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-teal-500 to-green-400 group-hover:w-full group-hover:left-0 transition-all duration-300 rounded-full"></div>
                 </a>
 
-                {/* Enhanced Dropdown Menu */}
+                {/* Dropdown */}
                 {item.hasDropdown && (
                   <div className={`absolute top-full left-0 mt-2 w-72 rounded-xl shadow-2xl border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 ${
                     isDarkMode 
