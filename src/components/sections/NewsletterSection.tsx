@@ -5,26 +5,11 @@ interface NewsletterSectionProps {
   isDarkMode: boolean;
 }
 
-const sampleSuggestions = [
-  'Dog collars',
-  'Cat sweaters',
-  'Pet toys',
-  'Leashes',
-  'Pet beds',
-  'Winter coats',
-  'Eco-friendly pet products',
-  'Limited edition collars',
-  'Personalized tags',
-  'Pet grooming kits',
-];
-
 export default function NewsletterSection({ isDarkMode }: NewsletterSectionProps) {
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isSubscribing, setIsSubscribing] = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [suggestions, setSuggestions] = useState<string[]>([]);
   const [isLocked, setIsLocked] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -33,31 +18,19 @@ export default function NewsletterSection({ isDarkMode }: NewsletterSectionProps
     Array<{ id: number; x: number; y: number; delay: number }>
   >([]);
 
-  // Gợi ý tìm kiếm dựa trên searchTerm
-  useEffect(() => {
-    if (!searchTerm.trim()) {
-      setSuggestions([]);
-      return;
-    }
-    const filtered = sampleSuggestions.filter((item) =>
-      item.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setSuggestions(filtered.slice(0, 5));
-  }, [searchTerm]);
-
-  // Đóng dropdown khi click ngoài
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
-        setSuggestions([]);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  // Đóng dropdown khi click ngoài (đã xóa dropdown nên không cần nữa)
+  // useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (
+  //       containerRef.current &&
+  //       !containerRef.current.contains(event.target as Node)
+  //     ) {
+  //       // setSuggestions([]);
+  //     }
+  //   };
+  //   document.addEventListener('mousedown', handleClickOutside);
+  //   return () => document.removeEventListener('mousedown', handleClickOutside);
+  // }, []);
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,8 +44,6 @@ export default function NewsletterSection({ isDarkMode }: NewsletterSectionProps
     setIsSubscribed(true);
     setIsSubscribing(false);
     setEmail('');
-    setSearchTerm('');
-    setSuggestions([]);
 
     // Tạo hiệu ứng lá thư bay lên
     const newLetters = Array.from({ length: 8 }, (_, i) => ({
@@ -98,13 +69,6 @@ export default function NewsletterSection({ isDarkMode }: NewsletterSectionProps
 
     // Reset trạng thái đăng ký sau 3 giây
     setTimeout(() => setIsSubscribed(false), 3000);
-  };
-
-  // Chọn gợi ý tìm kiếm
-  const handleSuggestionClick = (suggestion: string) => {
-    setSearchTerm(suggestion);
-    setEmail(suggestion);
-    setSuggestions([]);
   };
 
   return (
@@ -167,11 +131,12 @@ export default function NewsletterSection({ isDarkMode }: NewsletterSectionProps
             </div>
           </div>
 
+          {/* Thay đổi màu nền phần "Join Our Pack" */}
           <h2
-            className={`font-coiny text-4xl md:text-5xl mb-4 ${
+            className={`font-coiny text-4xl md:text-5xl mb-4 px-6 py-3 rounded-lg text-white ${
               isDarkMode
-                ? 'text-teal-300 drop-shadow-[0_0_4px_rgba(0,128,128,0.7)]'
-                : 'text-teal-700'
+                ? 'bg-green-700 drop-shadow-lg'
+                : 'bg-green-600'
             }`}
           >
             Join Our Pack
@@ -210,10 +175,7 @@ export default function NewsletterSection({ isDarkMode }: NewsletterSectionProps
                   <input
                     type="email"
                     value={email}
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                      setSearchTerm(e.target.value);
-                    }}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email address"
                     className={`w-full px-6 py-4 rounded-full focus:outline-none focus:ring-4 focus:ring-teal-500/50 transition-all placeholder-gray-500 ${
                       isDarkMode
@@ -223,24 +185,6 @@ export default function NewsletterSection({ isDarkMode }: NewsletterSectionProps
                     required
                     disabled={isLocked}
                   />
-                  {/* Gợi ý tìm kiếm */}
-                  {suggestions.length > 0 && (
-                    <ul
-                      className={`absolute z-20 left-0 right-0 mt-1 max-h-48 overflow-auto rounded-md border border-gray-300 bg-white dark:bg-gray-800 shadow-lg ${
-                        isDarkMode ? 'text-white' : 'text-gray-900'
-                      }`}
-                    >
-                      {suggestions.map((sugg) => (
-                        <li
-                          key={sugg}
-                          className="cursor-pointer px-4 py-2 hover:bg-teal-500 hover:text-white transition"
-                          onClick={() => handleSuggestionClick(sugg)}
-                        >
-                          {sugg}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
                 </div>
 
                 <button
