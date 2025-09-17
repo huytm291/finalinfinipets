@@ -114,26 +114,27 @@ export default function NewsletterSection({ isDarkMode }: NewsletterSectionProps
             </div>
           </div>
 
-          {/* "Join Our Pack" with original text color and white background */}
-          <h2 className="font-coiny text-4xl md:text-5xl mb-4 text-teal-700 bg-white inline-block rounded-lg px-6 py-3">
+          {/* "Join Our Pack" chỉ text, không nền */}
+          <h2 className="font-coiny text-4xl md:text-5xl mb-4 text-teal-700">
             Join Our Pack
           </h2>
 
-          <p className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed text-gray-600">
+          {/* Text đổi màu trắng */}
+          <p className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed text-white">
             Get exclusive access to new collections, styling tips, and special offers for your furry friends. Plus, enjoy 15% off your first order! 🐾
           </p>
 
           {isSubscribed ? (
             <div
               className={`flex flex-col items-center justify-center space-y-4 max-w-md mx-auto ${
-                isDarkMode ? 'text-white' : 'text-gray-900'
+                isDarkMode ? 'text-white' : 'text-white'
               }`}
             >
               <div className="flex items-center space-x-2">
-                <CheckCircle size={24} className="text-green-500" />
+                <CheckCircle size={24} className="text-green-300" />
                 <span className="text-lg font-semibold">Successfully subscribed!</span>
               </div>
-              <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
+              <p className="text-white">
                 Welcome to the INFINIPETS family! Check your email for your 15% discount code 🎉
               </p>
             </div>
@@ -188,23 +189,21 @@ export default function NewsletterSection({ isDarkMode }: NewsletterSectionProps
               </form>
 
               <div
-                className={`flex items-center justify-center space-x-6 mt-6 text-sm ${
-                  isDarkMode ? 'text-gray-400' : 'text-gray-500'
-                }`}
+                className="flex items-center justify-center space-x-6 mt-6 text-sm text-white"
               >
                 <div className="flex items-center space-x-2">
-                  <Shield size={16} className="text-green-500" />
+                  <Shield size={16} className="text-white" />
                   <span>No spam, ever</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Heart size={16} className="text-teal-500" />
+                  <Heart size={16} className="text-white" />
                   <span>Unsubscribe anytime</span>
                 </div>
               </div>
             </div>
           )}
 
-          <p className={`text-sm mt-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+          <p className="text-sm mt-6 text-white">
             Join thousands of pet parents who trust INFINIPETS for premium pet fashion 🐾✨
           </p>
         </div>
