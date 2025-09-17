@@ -37,9 +37,9 @@ export default function FooterSection() {
       aria-label={ariaLabel}
       title={title || ariaLabel}
       className={`
-        w-12 h-12 flex items-center justify-center rounded-full
+        w-10 h-10 flex items-center justify-center rounded-full
         bg-gradient-to-tr ${gradientFromTo}
-        text-white text-2xl
+        text-white text-xl
         shadow-lg
         transition-transform transition-shadow duration-300
         hover:scale-110 hover:shadow-[0_0_15px_rgba(255,255,255,0.6)]
@@ -67,9 +67,9 @@ export default function FooterSection() {
     <div
       title={title}
       className={`
-        w-12 h-12 flex items-center justify-center rounded-full
+        w-10 h-10 flex items-center justify-center rounded-full
         bg-gradient-to-tr ${gradientFromTo}
-        text-white text-2xl
+        text-white text-xl
         shadow-lg
         transition-transform transition-shadow duration-300
         hover:scale-110 hover:shadow-[0_0_15px_rgba(255,255,255,0.6)]
