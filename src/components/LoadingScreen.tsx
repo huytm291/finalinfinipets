@@ -31,11 +31,10 @@ const LoadingScreen = ({ onLoadComplete }: LoadingScreenProps) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-r from-teal-600 via-green-500 to-teal-600 animate-gradient-x backdrop-blur-md">
       <div className="relative text-center px-6 py-12 max-w-md w-full">
-        {/* Paw Prints Animation */}
+        {/* Paw Prints Animation - 2 icon nhấp nháy xen kẽ */}
         <div className="flex items-center justify-center space-x-6 mb-10">
-          <div className="text-7xl paw-glow animate-pulse-slow">🐾</div>
-          <div className="text-7xl paw-glow animate-pulse-slow animate-pulse-delay">🐾</div>
-          <div className="text-7xl paw-glow animate-pulse-slow animate-pulse-delay-2">🐾</div>
+          <div className="text-7xl paw-step animate-step-1">🐾</div>
+          <div className="text-7xl paw-step animate-step-2">🐾</div>
         </div>
 
         {/* INFINIPETS Logo */}
@@ -81,26 +80,25 @@ const LoadingScreen = ({ onLoadComplete }: LoadingScreenProps) => {
           background-size: 200% 200%;
           animation: gradient-x 8s ease infinite;
         }
-        @keyframes pulse-slow {
+        @keyframes paw-step-opacity {
           0%, 100% {
-            opacity: 0.7;
-            transform: scale(1);
-            text-shadow: 0 0 10px rgba(255,255,255,0.7);
+            opacity: 1;
+            transform: translateY(0);
           }
           50% {
-            opacity: 1;
-            transform: scale(1.15);
-            text-shadow: 0 0 20px rgba(255,255,255,1);
+            opacity: 0.3;
+            transform: translateY(-5px);
           }
         }
-        .animate-pulse-slow {
-          animation: pulse-slow 3s ease-in-out infinite;
+        .paw-step {
+          transition: opacity 0.3s ease, transform 0.3s ease;
         }
-        .animate-pulse-delay {
-          animation-delay: 1s;
+        .animate-step-1 {
+          animation: paw-step-opacity 1.2s infinite;
         }
-        .animate-pulse-delay-2 {
-          animation-delay: 2s;
+        .animate-step-2 {
+          animation: paw-step-opacity 1.2s infinite;
+          animation-delay: 0.6s;
         }
         @keyframes float-slow {
           0%, 100% {
